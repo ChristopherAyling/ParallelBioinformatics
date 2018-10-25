@@ -1,0 +1,11 @@
+{
+    "yaaY": " Consensus: -35: T T G T C G gap: 18.0 -10: T A T A C T  (4 matches)",
+    "all": " Consensus: -35: T T G A C A gap: 17.6 -10: T A T A A T  (5430 matches)",
+    "folA": " Consensus: -35: T T G A C A gap: 17.5 -10: T A T A A T  (46 matches)",
+    "caiF": " Consensus: -35: T T C A A A gap: 18.0 -10: T A T A A T  (11 matches)",
+    "fixA": " Consensus: -35: T T G A C A gap: 17.6 -10: T A T A A T  (896 matches)",
+    "carA": " Consensus: -35: T T G A C A gap: 17.7 -10: T A T A A T  (1079 matches)",
+    "nhaA": " Consensus: -35: T T G A C A gap: 17.6 -10: T A T A A T  (1879 matches)",
+    "fixB": " Consensus: -35: T T G A C A gap: 17.7 -10: T A T A A T  (965 matches)",
+    "caiD": " Consensus: -35: T T G A C A gap: 17.6 -10: T A T A A T  (550 matches)"
+}
