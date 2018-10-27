@@ -17,8 +17,8 @@ object Main extends App {
     result
   }
 
-  val numThreads = 8
-  val referenceFile = "./referenceGenes.list"
+  val numThreads = 7
+  val referenceFile = "./referenceGenes2.list"
   val dir = "C:\\Users\\chris\\Documents\\uni_projects\\CAB401\\sc\\hello-world\\Ecoli"
 
 //  println("running sequential")
@@ -29,7 +29,7 @@ object Main extends App {
 
   println("running parallel")
   println(System.nanoTime())
-  Parallel.run(referenceFile, dir, 8)
+  Parallel.run(referenceFile, dir, numThreads)
 }
 
 object Utils {
