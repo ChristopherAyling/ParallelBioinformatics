@@ -61,6 +61,7 @@ class MasterActor extends Actor with ActorLogging {
         println(consensus.toString())
         Utils.ConsensusMapToJSON(consensus.toMap, "ParaOutput.json")
         log.info("Shutting down system")
+        println(System.nanoTime())
         context.system.terminate()
       }
     }
@@ -107,23 +108,21 @@ object Parallel {
     import MasterActor.{InitialiseConsensus}
 
     // Load Files
-    val referenceGenes: List[Gene] = Sequential.ParseReferenceGenes(referenceFile).asScala toList
+    val referenceGenes: List[Gene] = Sequential.ParseReferenceGenes(referenceFile).asScala.toList.sortBy(_.sequence.toString.length).reverse
     val GenBankRecords: List[GenbankRecord] = Sequential.ListGenbankFiles(dir).asScala.toList.map(Sequential.Parse)
-
-    if (GenBankRecords.isEmpty) throw new Exception(GenBankRecords + "length is " + GenBankRecords.length)
 
     // Construct actors
     val system: ActorSystem = ActorSystem("ReferenceGeneAnalysis")
 
     // stores results
-    val master: ActorRef = system.actorOf(MasterActor.props, "consensusActor")
-    master ! InitialiseConsensus(referenceGenes.map(_.name))
-    referenceGenes.foreach(gene => master ! Job(gene, GenBankRecords))
+    val masterActor: ActorRef = system.actorOf(MasterActor.props, "consensusActor")
+    masterActor ! InitialiseConsensus(referenceGenes.map(_.name))
+    referenceGenes.foreach(gene => masterActor ! Job(gene, GenBankRecords))
 
     //performs analysis
     val threadIds = 0 until numCores
     val analyserActors = threadIds.map( threadId =>
-      system.actorOf(AnalyserActor.props(master), "AnalyserActor"++threadId.toString)
+      system.actorOf(AnalyserActor.props(masterActor), "AnalyserActor"++threadId.toString)
     )
   }// end run
 }// end parallel

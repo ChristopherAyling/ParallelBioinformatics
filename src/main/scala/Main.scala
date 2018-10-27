@@ -28,7 +28,8 @@ object Main extends App {
 //  }
 
   println("running parallel")
-  Parallel.run(referenceFile, dir, 4)
+  println(System.nanoTime())
+  Parallel.run(referenceFile, dir, 8)
 }
 
 object Utils {

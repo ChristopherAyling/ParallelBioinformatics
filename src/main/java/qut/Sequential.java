@@ -127,6 +127,8 @@ public class Sequential
 
     public static void main(String[] args) throws FileNotFoundException, IOException
     {
+        System.out.println(System.nanoTime());
         run("./referenceGenes.list", "./Ecoli");
+        System.out.println(System.nanoTime());
     }
 }
